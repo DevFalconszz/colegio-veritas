@@ -29,7 +29,7 @@ export async function POST() {
         { title: "Organizar cronograma de matrículas", area: "SECRETARIA", status: "A_FAZER" },
         { title: "Atualizar planilha de vendas", area: "COMERCIAL", status: "A_FAZER" },
         { title: "Configurar novos computadores do laboratório", area: "TI", status: "A_FAZER" },
-        { title: "Revisar relatório de despesas mensais", area: "FINANCEIRO", status: "ESPERANDO" },
+        { title: "Revisar relatório de despesas mensais", area: "FINANCEIRO", status: "FAZENDO" },
         { title: "Preparar contratos de rematrícula 2026", area: "SECRETARIA", status: "FAZENDO" },
         { title: "Atualizar sistema de boletos", area: "TI", status: "CONCLUIDA" },
       ],
