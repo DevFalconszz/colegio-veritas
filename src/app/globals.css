@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0a1a;
+  --foreground: #e0e0ff;
+  --primary: #6c5ce7;
+  --primary-glow: rgba(108, 92, 231, 0.3);
+  --secondary: #00cec9;
+  --card-bg: rgba(20, 20, 50, 0.8);
+  --card-border: rgba(108, 92, 231, 0.2);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", var(--font-geist-sans), sans-serif;
+  --font-mono: "JetBrains Mono", var(--font-geist-mono), monospace;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(108, 92, 231, 0.3) transparent;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+.glass {
+  background: rgba(16, 16, 40, 0.85);
+  border: 1px solid var(--card-border);
+}
+
+.glass-drag {
+  background: rgba(20, 20, 50, 0.95);
+  border: 1px solid rgba(108, 92, 231, 0.4);
+  box-shadow: 0 8px 32px rgba(108, 92, 231, 0.3);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px var(--primary-glow), inset 0 0 15px rgba(108, 92, 231, 0.05);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.kanban-column {
+  min-height: 200px;
+  transition: all 0.2s ease;
+}
+
+.kanban-column-drag-over {
+  background: rgba(108, 92, 231, 0.05);
+  border-color: var(--primary);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px var(--primary-glow); }
+  50% { box-shadow: 0 0 20px var(--primary-glow); }
+}
+
+.animate-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

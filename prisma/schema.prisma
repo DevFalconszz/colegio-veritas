@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum Area {
+  SECRETARIA
+  COMERCIAL
+  TI
+  FINANCEIRO
+}
+
+enum TaskStatus {
+  A_FAZER
+  FAZENDO
+  CONCLUIDA
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  area      Area
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  assignedTasks Task[]    @relation("AssignedUser")
+  lockedTasks   Task[]    @relation("LockedUser")
+  comments      Comment[]
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus @default(A_FAZER)
+  area        Area
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  assignedToId String?
+  assignedTo   User?     @relation("AssignedUser", fields: [assignedToId], references: [id])
+  lockedById   String?
+  lockedBy     User?     @relation("LockedUser", fields: [lockedById], references: [id])
+  comments     Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  taskId String
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User @relation(fields: [userId], references: [id])
+}
