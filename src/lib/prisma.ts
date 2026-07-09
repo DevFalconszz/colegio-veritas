@@ -1,5 +1,5 @@
 import { PrismaClient } from "../generated/prisma/client";
-import { PrismaLibSQL } from "@prisma/adapter-libsql";
+import { PrismaLibSql } from "@prisma/adapter-libsql";
 import { createClient } from "@libsql/client";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
@@ -8,7 +8,7 @@ function createPrismaClient() {
   const libsql = createClient({
     url: process.env.DATABASE_URL!.replace("postgresql://", "libsql://"),
   });
-  const adapter = new PrismaLibSQL(libsql);
+  const adapter = new PrismaLibSql(libsql);
   return new PrismaClient({ adapter });
 }
 
