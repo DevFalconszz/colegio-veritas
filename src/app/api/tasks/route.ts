@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session?.user) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "N\u00e3o autorizado" }, { status: 401 });
 
   const user = session.user as any;
 
@@ -36,19 +36,19 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
-  if (!session?.user) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+  if (!session?.user) return NextResponse.json({ error: "N\u00e3o autorizado" }, { status: 401 });
 
   const user = session.user as any;
-  if (user.role !== "ADMIN") return NextResponse.json({ error: "Apenas admin pode criar tarefas" }, { status: 403 });
-
   const { title, description, area } = await req.json();
 
-  if (!title || !area) {
-    return NextResponse.json({ error: "Título e área são obrigatórios" }, { status: 400 });
+  if (!title) {
+    return NextResponse.json({ error: "T\u00edtulo \u00e9 obrigat\u00f3rio" }, { status: 400 });
   }
 
+  const taskArea = user.role === "ADMIN" ? area : user.area;
+
   const task = await prisma.task.create({
-    data: { title, description, area },
+    data: { title, description, area: taskArea },
     include: {
       assignedTo: { select: { id: true, name: true, area: true } },
       lockedBy: { select: { id: true, name: true } },
