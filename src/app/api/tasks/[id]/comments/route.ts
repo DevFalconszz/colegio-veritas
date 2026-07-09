@@ -22,8 +22,6 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
     return NextResponse.json({ error: "Sem permissão" }, { status: 403 });
   }
 
-  if (user.role !== "ADMIN" && task.lockedById && task.lockedById !== user.id) {
-    return NextResponse.json({ error: "Apenas quem está executando a tarefa ou admin pode comentar" }, { status: 403 });
   }
 
   const comment = await prisma.comment.create({
