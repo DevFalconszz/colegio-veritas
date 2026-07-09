@@ -7,8 +7,8 @@ export async function GET() {
 
   try {
     const url = process.env.DATABASE_URL || "N/A";
-    errors.push(`DATABASE_URL exists: ${url !== "N/A"}`);
-    errors.push(`DATABASE_URL prefix: ${url.substring(0, 30)}...`);
+    errors.push(`DATABASE_URL exists: ${url.startsWith("postgresql")}`);
+    errors.push(`DATABASE_URL prefix: ${url.substring(0, 35)}...`);
 
     const adapter = new PrismaPg({ connectionString: url });
     const prisma = new PrismaClient({ adapter });
