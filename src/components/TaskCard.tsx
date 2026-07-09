@@ -35,7 +35,7 @@ export function TaskCard({ task, index, userId, userArea, isAdmin, onDelete, onC
   const isLockedByOther = !!(task.lockedBy && task.lockedBy.id !== userId);
   const isSameArea = task.area === userArea;
   const canDrag = isAdmin || (isSameArea && !isLockedByOther);
-  const canComment = isAdmin || (isSameArea && task.lockedById === userId);
+  const canComment = isAdmin || isSameArea;
   const commentCount = task.comments?.length || 0;
 
   async function handleAddComment(e: React.FormEvent) {
