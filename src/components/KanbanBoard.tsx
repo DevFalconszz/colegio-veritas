@@ -161,15 +161,13 @@ export function KanbanBoard() {
               </select>
             )}
 
-            {isAdmin && (
-              <button
+            <button
                 onClick={() => setShowCreate(!showCreate)}
                 className="flex items-center gap-1.5 bg-gradient-to-r from-[#6c5ce7] to-[#00cec9] text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
               >
                 <Plus size={16} />
                 Nova Tarefa
               </button>
-            )}
 
             <button
               onClick={fetchTasks}
@@ -180,7 +178,7 @@ export function KanbanBoard() {
           </div>
         </div>
 
-        {showCreate && isAdmin && (
+        {showCreate && (
           <form
             onSubmit={handleCreateTask}
             className="glass rounded-xl p-4 mb-6 border border-[#6c5ce7]/20 space-y-3"
@@ -201,16 +199,18 @@ export function KanbanBoard() {
               className="w-full bg-[#0a0a1a]/60 border border-[#6c5ce7]/20 rounded-lg px-4 py-2 text-[#e0e0ff] placeholder:text-[#505070] focus:outline-none focus:border-[#6c5ce7]/50 text-sm resize-none"
             />
             <div className="flex items-center gap-2">
-              <select
-                value={newArea}
-                onChange={(e) => setNewArea(e.target.value)}
-                className="bg-[#0a0a1a]/60 border border-[#6c5ce7]/20 rounded-lg px-3 py-2 text-sm text-[#e0e0ff] focus:outline-none focus:border-[#6c5ce7]/50"
-              >
-                <option value="SECRETARIA">Secretaria</option>
-                <option value="COMERCIAL">Comercial</option>
-                <option value="TI">TI</option>
-                <option value="FINANCEIRO">Financeiro</option>
-              </select>
+              {isAdmin && (
+                <select
+                  value={newArea}
+                  onChange={(e) => setNewArea(e.target.value)}
+                  className="bg-[#0a0a1a]/60 border border-[#6c5ce7]/20 rounded-lg px-3 py-2 text-sm text-[#e0e0ff] focus:outline-none focus:border-[#6c5ce7]/50"
+                >
+                  <option value="SECRETARIA">Secretaria</option>
+                  <option value="COMERCIAL">Comercial</option>
+                  <option value="TI">TI</option>
+                  <option value="FINANCEIRO">Financeiro</option>
+                </select>
+              )}
               <button
                 type="submit"
                 className="bg-gradient-to-r from-[#6c5ce7] to-[#00cec9] text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
