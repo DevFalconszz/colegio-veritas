@@ -22,8 +22,6 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
     return NextResponse.json({ error: "Sem permissão" }, { status: 403 });
   }
 
-  }
-
   const comment = await prisma.comment.create({
     data: { content: content.trim(), taskId: id, userId: user.id },
     include: { user: { select: { id: true, name: true, area: true } } },
