@@ -156,7 +156,7 @@ export function TaskCard({ task, index, userId, userArea, isAdmin, onDelete, onC
                       })}
                     </span>
                   </div>
-                  <p className="text-[#c0c0e0] mt-0.5">{c.content}</p>
+                  <p className="text-[#c0c0e0] mt-0.5">{c.content.split(/(https?:\/\/[^\s]+)/g).map((part, i) => i % 2 === 1 ? <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-[#6c5ce7] hover:underline break-all">{part}</a> : part)}</p>
                 </div>
               ))}
 
