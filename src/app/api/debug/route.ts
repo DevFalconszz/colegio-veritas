@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
@@ -10,13 +10,13 @@ export async function GET() {
     errors.push("DATABASE_URL prefix: " + url.substring(0, 35));
     errors.push("NODE_TLS_REJECT_UNAUTHORIZED: " + process.env.NODE_TLS_REJECT_UNAUTHORIZED);
 
-    await prisma.$connect();
+    await prisma.();
     errors.push("Prisma connected OK");
 
     const userCount = await prisma.user.count();
     errors.push("User count: " + userCount);
 
-    await prisma.$disconnect();
+    await prisma.();
   } catch (e: any) {
     errors.push("ERROR: " + (e?.message || String(e)));
     errors.push("CODE: " + (e?.code || "N/A"));
