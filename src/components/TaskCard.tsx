@@ -29,6 +29,7 @@ const areaColors: Record<string, string> = {
 
 export function TaskCard({ task, index, userId, userArea, isAdmin, onDelete, onCommentAdded }: TaskCardProps) {
   const [showComments, setShowComments] = useState(false);
+  const [showFullDesc, setShowFullDesc] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [sending, setSending] = useState(false);
 
