@@ -79,8 +79,8 @@ export function TaskCard({ task, index, userId, userArea, isAdmin, onDelete, onC
         >
           <div className="p-3.5">
             <div className="flex items-start justify-between gap-2">
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#e0e0ff] break-words">
+              <div className="flex-1 min-w-0 overflow-visible">
+                <p className="text-sm font-medium text-[#e0e0ff] whitespace-normal break-words">
                   {task.title}
                 </p>
                 {task.description && (
