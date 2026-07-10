@@ -85,7 +85,7 @@ export function TaskCard({ task, index, userId, userArea, isAdmin, onDelete, onC
                 </p>
                 {task.description && (
                   <div>
-                    <p className={	ext-xs text-[#707090] mt-1 }>{task.description}</p>
+                    <p className={`text-xs text-[#707090] mt-1 ${showFullDesc ? '' : 'line-clamp-2'}`}>{task.description}</p>
                     {task.description.length > 100 && (
                       <button
                         onClick={(e) => { e.stopPropagation(); setShowFullDesc(!showFullDesc); }}
@@ -188,9 +188,9 @@ export function TaskCard({ task, index, userId, userArea, isAdmin, onDelete, onC
                 </form>
               )}
 
-              {!canComment && task.lockedBy && (
+              {!canComment && (
                 <p className="text-[10px] text-[#505070] text-center pt-1">
-                  Apenas {task.lockedBy.name} pode comentar
+                  Você não pode comentar nesta tarefa
                 </p>
               )}
             </div>
